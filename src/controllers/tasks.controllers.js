@@ -11,7 +11,6 @@ const getTasksAll = async (req,res)=>{
 
 const getTasks = async (req,res)=>{
     try {
-        console.log(req)
         const {id} = req.params
         const result = await pool.query('SELECT * FROM tienda.task where id=$1',[id])
         if (result.rows.length === 0){
@@ -56,6 +55,9 @@ const putTask = async(req,res)=>{
         const result = await pool.query('UPDATE tienda.task set titulo = $1, descripcion = $2 where id = $3', [titulo, descripcion,id])
         if (result.rowCount === 0){
             return res.json(404,{message:'id not found'})
+        }else{
+            res.send("Updating a task")
+            console.log("updating a task")
         }
     } catch (error) {
         console.log(error.message)
