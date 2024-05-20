@@ -1,16 +1,17 @@
+import {Link} from 'react-router-dom'
 import './NavBar.css';
 export default function NavBar() {
   return (
     <header className="header">
         <div className="logo">
-            <img src={`${process.env.PUBLIC_URL}/logo192.png`} alt="logo" />
+            <a href='/'><img src={`${process.env.PUBLIC_URL}/logo192.png`} alt="logo" /></a>
         </div>
         <nav>
           <ul className="nav-links">
-            <li><a href="#">Inicio</a></li>
+            <li><Link to="/">Inicio</Link></li>
             <li><a href="#">Semilleros</a>
               <ul className='list-vertical'>
-                <li><a href='#'>semillero1</a></li>
+                <li><Link to='/semillero1'>semillero1</Link></li>
                 <li><a href='#'>semillero2</a></li>
                 <li><a href='#'>semillero3</a></li>
               </ul>
