@@ -26,16 +26,39 @@ const register = async (req, res) => {
 const login = async (req, res) => {
     const { nombre_usuario, contraseña } = req.body
     try {
-        const body = await pool.query('insert into tienda.task(titulo, descripcion) values($1, $2) returning *', [titulo, descripcion])
-        res.json(body.rows[0])
+        const exists = await pool.query('SELECT EXISTS (SELECT 1 FROM tienda.usuario u WHERE nombre_usuario = $1 AND contraseña = $2);', [nombre_usuario, contraseña])
+
+        if(!exists.rows[0].exists){
+            res.json({message:"no se encontro el usuario"})
+        }else{
+            const body = await pool.query('select id from tienda.usuario where nombre_usuario = $1',[nombre_usuario])
+            const user = body.rows[0].id
+            const token = await createjwt({ id:user })
+            res.cookie("token",token)
+            res.json({menssage:"User successfully loggin in"})
+        }
+        
     } catch (error) {
         console.log(error)
         res.json(error.message)
     }
 }
 
+const logout = async(req,res)=>{
+    res.cookie('token',"",{
+        expires: new Date(0)
+    })
+    return res.sendStatus(200)
+}
+
+const profile = async(req,res)=>{
+    res.send('profile')
+}
+
 
 module.exports = {
     register,
-    login
+    login,
+    logout,
+    profile
 }
