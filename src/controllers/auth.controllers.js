@@ -52,7 +52,7 @@ const logout = async(req,res)=>{
 }
 
 const profile = async(req,res)=>{
-    res.send('profile')
+    res.send(`profile, el nombre es ${req.user}`)
 }
 
 

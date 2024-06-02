@@ -18,7 +18,8 @@
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
     "npx": "^10.2.2",
-    "pg": "^8.11.3"
+    "pg": "^8.11.3",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "nodemon": "^3.1.0"
