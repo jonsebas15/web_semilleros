@@ -16,7 +16,7 @@ export default function NavBar() {
                 <li><a href='#'>semillero3</a></li>
               </ul>
             </li>
-            <li><Link to="/login">Iniciar sesión</Link></li>
+            <li><Link to="/login">Iniciar sesión/Registrarse</Link></li>
           </ul>
         </nav>
         <a href="#" className="btn"><button>contactanos</button></a>

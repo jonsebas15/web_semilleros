@@ -1,4 +1,3 @@
-
 export default function Semillero1() {
   return (
     <div>
