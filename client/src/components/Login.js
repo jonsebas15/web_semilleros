@@ -2,9 +2,18 @@ import 'boxicons'
 import './Login-Register.css';
 import {Link} from 'react-router-dom'
 import { useState, useEffect }from 'react'
+import { useAuth } from "../context/authContext";
+import { useNavigate } from 'react-router-dom'
 
 
 export default function Login() {
+    const { signup, isAuthenticated, errors } = useAuth();
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+        if(isAuthenticated) navigate('/')
+    },[isAuthenticated])
+
     const [useLogin, setLogin] = useState({
         nombre_usuario:'',
         contraseña:''
@@ -12,19 +21,14 @@ export default function Login() {
 
     const handleSubmit = async e=>{
         e.preventDefault(); //para que no recargue la pagina
-        const res = await fetch('http://localhost:4000/login',{
-            method: "POST",
-            body: JSON.stringify(useLogin),
-            headers:{ "content-type": "application/json"}
-        });
-        const data = await res.json();
-        console.log(data)
+        signup('http://localhost:4000/login', useLogin)
     }
 
     const handleChance = e=>{
         setLogin({...useLogin, [e.target.name]: e.target.value})
     }
     return <div className='body2'>
+         {<div className={`errors ${errors && errors.length > 0 ? '' : 'hidden'}`}>{errors} </div>}
         <form className='login' onSubmit={handleSubmit}>
             <h1>Iniciar sesión</h1>
             <div className="input-box">

@@ -137,3 +137,19 @@
 .input-box2 p{
     font-weight: 700;
 }
+.errors{
+    padding: 8px;
+    border-radius: 5px;
+    background-color: crimson;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    text-align: center;
+    position: absolute;
+    top: 12%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+}

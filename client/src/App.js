@@ -5,9 +5,11 @@ import NavBar from './components/NavBar'
 import Semillero1 from "./components/Semillero1";
 import Login from "./components/Login"; 
 import Register from "./components/Register"
+import { AuthProvider } from "./context/authContext";
 export default function App() {
   return (
-    <BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
       <NavBar></NavBar>
       <Routes>
         <Route path='/'element={<Principal />} />
@@ -16,5 +18,6 @@ export default function App() {
         <Route path='/register' element={<Register/>} />
       </Routes>
     </BrowserRouter>
+    </AuthProvider>
   );
 }

@@ -8,17 +8,15 @@ const register = async (req, res) => {
     try {
         const body = await pool.query('insert into tienda.usuario(nombre, codigo, correo, nombre_usuario, contraseña) values($1, $2, $3, $4, $5) returning *', [nombre, codigo, correo, nombre_usuario, contraseña])
          //res.json({id:body.rows[0].id, nombre:body.rows[0].nombre ...})
-        console.log(body.rows[0].id)
         const user = body.rows[0]
         const token = await createjwt({ id: user.id })
         res.cookie(token)
         res.json({id:user.id, 
             nombre:user.nombre,
             correo:user.correo})
-        
     } catch (error) {
         console.log(error)
-        res.json(error.message)
+        res.status(400).json({ message: error.message })
     }
 }
 
@@ -29,7 +27,7 @@ const login = async (req, res) => {
         const exists = await pool.query('SELECT EXISTS (SELECT 1 FROM tienda.usuario u WHERE nombre_usuario = $1 AND contraseña = $2);', [nombre_usuario, contraseña])
 
         if(!exists.rows[0].exists){
-            res.json({message:"no se encontro el usuario"})
+            res.status(400).json({message:"no se encontro el usuario"})
         }else{
             const body = await pool.query('select id from tienda.usuario where nombre_usuario = $1',[nombre_usuario])
             const user = body.rows[0].id
@@ -40,7 +38,7 @@ const login = async (req, res) => {
         
     } catch (error) {
         console.log(error)
-        res.json(error.message)
+        res.status(400).json({ message: error.message })
     }
 }
 
