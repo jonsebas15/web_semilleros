@@ -1,10 +1,12 @@
 import {Link} from 'react-router-dom'
+import { useAuth } from "../context/authContext";
 import './NavBar.css';
 export default function NavBar() {
+  const { isAuthenticated, user, logout } = useAuth();
   return (
     <header className="header">
         <div className="logo">
-            <a href='/'><img src={`${process.env.PUBLIC_URL}/logo192.png`} alt="logo" /></a>
+            <a href='/'><img src={`${process.env.PUBLIC_URL}/uis-logo.svg`} alt="logo" /></a>
         </div>
         <nav>
           <ul className="nav-links">
@@ -16,10 +18,21 @@ export default function NavBar() {
                 <li><a href='#'>semillero3</a></li>
               </ul>
             </li>
-            <li><Link to="/login">Iniciar sesión/Registrarse</Link></li>
+            {isAuthenticated ? (
+              <li><Link to="/" onClick={()=>logout()}>Cerrar sesión</Link></li>
+            ) : (
+              <li><Link to="/register">Registrarse</Link></li>
+            )}
           </ul>
         </nav>
-        <a href="#" className="btn"><button>contactanos</button></a>
+        {
+          isAuthenticated ? (
+            <Link to="/login" className="btn"><button>{user.nombre}</button></Link>
+          ):(
+            <Link to="/login" className="btn"><button>Iniciar sesión</button></Link>
+          )
+        }
+        
     </header>
   )
 }

@@ -1,4 +1,3 @@
-import 'boxicons'
 import './Login-Register.css';
 import {Link} from 'react-router-dom'
 import { useState, useEffect }from 'react'
@@ -7,12 +6,12 @@ import { useNavigate } from 'react-router-dom'
 
 
 export default function Login() {
-    const { signup, isAuthenticated, errors } = useAuth();
+    const { signup, isAuthenticated, errors} = useAuth();
     const navigate = useNavigate();
 
     useEffect(()=>{
         if(isAuthenticated) navigate('/')
-    },[isAuthenticated])
+    },[isAuthenticated, navigate])
 
     const [useLogin, setLogin] = useState({
         nombre_usuario:'',

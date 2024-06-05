@@ -1,6 +1,6 @@
 const { Router } = require('express')
 const {getTasksAll, postTask, deleteTask, putTask, getTasks} = require('../controllers/tasks.controllers')
-const {register, login, logout, profile} = require('../controllers/auth.controllers')  
+const {register, login, logout, profile, verifyToken} = require('../controllers/auth.controllers')  
 const {authRequired} = require('../middlewares/validateToken')
 const {registerSchema, loginSchema} = require('../schemas/auth.schema')
 const {validateSchema} = require('../middlewares/validateSchema')
@@ -22,6 +22,8 @@ router.post('/login', validateSchema(loginSchema), login);
 
 router.post('/logout', logout);
 
-router.get('/profile', authRequired, profile)
+router.get('/profile', authRequired, profile);
+
+router.post('/verifyToken', verifyToken);
 
 module.exports = router;
