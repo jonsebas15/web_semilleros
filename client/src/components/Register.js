@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useAuth } from "../context/authContext";
 import { useNavigate } from 'react-router-dom'
+import apiUrl from '../env'
 export default function Register() {
     const { signup, isAuthenticated, errors } = useAuth();
     const navigate = useNavigate();
@@ -18,7 +19,7 @@ export default function Register() {
     })
     const handleSubmit = async e=>{
         e.preventDefault();
-        signup('http://localhost:4000/register', useRegister)
+        signup(`${apiUrl}/register`, useRegister)
     }
     const handleChance = e=>{
         setRegister({...useRegister, [e.target.name]:e.target.value})
