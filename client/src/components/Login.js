@@ -20,7 +20,7 @@ export default function Login() {
 
     const handleSubmit = async e=>{
         e.preventDefault(); //para que no recargue la pagina
-        signup('http://localhost:4000/login', useLogin)
+        signup('3.135.207.1:4000/login', useLogin)
     }
 
     const handleChance = e=>{

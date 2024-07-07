@@ -1,14 +1,16 @@
 import './Principal.css';
+import { useAuth } from "../context/authContext";
+import {Link} from 'react-router-dom'
 
 export default function Principal() {
   return (
     <div>
       <div className='slider-frame'>
         <ul>
-          <li><img src={`${process.env.PUBLIC_URL}/semillero2.jpg`} alt="semillero1" /></li>
-          <li><img src={`${process.env.PUBLIC_URL}/semillero1.jpg`} alt="semillero1" /></li>
-          <li><img src={`${process.env.PUBLIC_URL}/semillero3.png`} alt="semillero1" /></li>
-          <li><img src={`${process.env.PUBLIC_URL}/semillero4.jpg`} alt="semillero1" /></li>
+          <li><Link to='/semillero1'><img src={`${process.env.PUBLIC_URL}/semillero2.jpg`} alt="semillero1" /></Link></li>
+          <li><Link to='/semillero1'><img src={`${process.env.PUBLIC_URL}/semillero1.jpg`} alt="semillero1" /></Link></li>
+          <li><Link to='/semillero1'><img src={`${process.env.PUBLIC_URL}/semillero3.png`} alt="semillero1" /></Link></li>
+          <li><Link to='/semillero1'><img src={`${process.env.PUBLIC_URL}/semillero4.jpg`} alt="semillero1" /></Link></li>
         </ul>
       </div>
       <div className='container-news'>
