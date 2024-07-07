@@ -1,5 +1,6 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import Cookies from 'js-cookie';
+import apiUrl from '../../env'
 
 export const AuthContext = createContext();
 export const useAuth = () => {
@@ -53,7 +54,7 @@ export const AuthProvider = ({ children }) => {
             const cookies = Cookies.get()
             if(cookies.token) {
                 async function fetchDate(){
-                    const res = await fetch('http://localhost:4000/verifyToken',{
+                    const res = await fetch(`${apiUrl}/verifyToken`,{
                         method: 'POST',
                         body: JSON.stringify(cookies),
                         headers: { "content-type": "application/json" },

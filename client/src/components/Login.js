@@ -3,6 +3,9 @@ import {Link} from 'react-router-dom'
 import { useState, useEffect }from 'react'
 import { useAuth } from "../context/authContext";
 import { useNavigate } from 'react-router-dom'
+import apiUrl from '../../env'
+
+
 
 
 export default function Login() {
@@ -20,7 +23,7 @@ export default function Login() {
 
     const handleSubmit = async e=>{
         e.preventDefault(); //para que no recargue la pagina
-        signup('3.135.207.1:4000/login', useLogin)
+        signup(`${apiUrl}/login`, useLogin)
     }
 
     const handleChance = e=>{
