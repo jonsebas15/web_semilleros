@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import { useState, useEffect }from 'react'
 import { useAuth } from "../context/authContext";
 import { useNavigate } from 'react-router-dom'
-import apiUrl from '../../env'
+import apiUrl from '../env'
 
 
 

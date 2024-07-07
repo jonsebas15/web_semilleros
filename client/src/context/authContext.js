@@ -1,6 +1,6 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import Cookies from 'js-cookie';
-import apiUrl from '../../env'
+import apiUrl from '../env'
 
 export const AuthContext = createContext();
 export const useAuth = () => {
