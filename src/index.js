@@ -8,7 +8,7 @@ const tasksroutes = require('./routes/tasks.routes')
 const app = express();
 
 app.use(cors({
-    origin: '3.135.207.1:3000',
+    origin: 'http://3.135.207.1:3000',
     credentials: true
 }))
 app.use(morgan('dev'));
