@@ -4,6 +4,7 @@ const {register, login, logout, profile, verifyToken} = require('../controllers/
 const {authRequired} = require('../middlewares/validateToken')
 const {registerSchema, loginSchema} = require('../schemas/auth.schema')
 const {validateSchema} = require('../middlewares/validateSchema')
+const {Correo} = require('../controllers/correo.controllers')
 const router = Router()
 
 router.get('/task', getTasksAll);
@@ -25,5 +26,7 @@ router.post('/logout', logout);
 router.get('/profile', authRequired, profile);
 
 router.post('/verifyToken', verifyToken);
+
+router.post('/correo', Correo);
 
 module.exports = router;

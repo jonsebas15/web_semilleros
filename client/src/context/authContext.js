@@ -14,6 +14,20 @@ export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setAuthenticated] = useState(false);
     const [errors, setErrors] = useState([]);
 
+    const postCorreo = async(url, mensaje) =>{
+        try {
+            const res = await fetch(url , {
+                method: 'POST',
+                body: JSON.stringify(mensaje),
+                headers: { "content-type": "application/json" },
+                credentials: 'include',
+            })
+            const data = await res.json();
+            console.log(data)
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
 
     const signup = async (url, user) => {
         try {
@@ -86,7 +100,8 @@ export const AuthProvider = ({ children }) => {
                 isAuthenticated,
                 errors,
                 user,
-                logout
+                logout,
+                postCorreo
             }}>
             {children}
         </AuthContext.Provider>
