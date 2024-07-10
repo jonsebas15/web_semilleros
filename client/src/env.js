@@ -1,3 +1,3 @@
-const apiUrl = 'http://3.135.207.1:4000';
+const apiUrl = 'http://3.139.239.51:4000';
 
 export default apiUrl;
